@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "197860412513",
+    "project_id": "practiseandroid-7ce02",
+    "storage_bucket": "practiseandroid-7ce02.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:197860412513:android:0257df7e22f550ae1cae20",
+        "android_client_info": {
+          "package_name": "com.jatin.practiseandroid"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNqqFqG9M32yXZStXivK3ymIEwLr5YUuo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

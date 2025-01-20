@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:padding="16dp"
+    android:layout_height="match_parent">
+
+
+    <EditText
+        android:id="@+id/first_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="0"
+        android:inputType="number"
+        />
+
+    <EditText
+        android:id="@+id/second_number"
+        android:layout_width="match_parent"
+        android:layout_below="@id/first_number"
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
+        android:hint="0"
+        android:inputType="number"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/add_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Widget.Material3.Button.OutlinedButton"
+        android:text="+ add"
+        android:layout_below="@id/second_number"
+        />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/sub_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Widget.Material3.Button.OutlinedButton"
+        android:text="- sub"
+        android:layout_marginStart="30dp"
+        android:layout_toRightOf="@id/add_btn"
+        android:layout_below="@id/second_number"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/product_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Widget.Material3.Button.OutlinedButton"
+        android:text="* multiply"
+        android:layout_below="@id/add_btn"
+        />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/divide_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Widget.Material3.Button.OutlinedButton"
+        android:text="/ divide"
+
+        android:layout_marginStart="30dp"
+        android:layout_below="@id/sub_btn"
+        android:layout_toRightOf="@id/product_btn"
+        />
+
+
+    <Button
+        android:id="@+id/clear_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Clear"
+        android:layout_below="@id/divide_btn"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        />
+
+    <TextView
+        android:id="@+id/ans_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/clear_btn"
+        android:layout_marginTop="20dp"
+        android:text="0"
+        />
+
+</RelativeLayout>

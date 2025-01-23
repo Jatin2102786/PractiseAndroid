@@ -32,6 +32,11 @@
         android:name="com.jatin.practiseandroid.ui.SpinnerFragment"
         android:label="fragment_spinner"
         tools:layout="@layout/fragment_spinner" />
+    <fragment
+        android:id="@+id/listViewFragment"
+        android:name="com.jatin.practiseandroid.ui.ListViewFragment"
+        android:label="fragment_list_view"
+        tools:layout="@layout/fragment_list_view" />
 
 
 </navigation>

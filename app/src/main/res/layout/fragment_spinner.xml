@@ -53,6 +53,16 @@
         android:layout_marginTop="10dp"
         />
 
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/view_layout_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="View Layout"
+            android:layout_marginTop="50dp"
+            />
+
     </LinearLayout>
 
 

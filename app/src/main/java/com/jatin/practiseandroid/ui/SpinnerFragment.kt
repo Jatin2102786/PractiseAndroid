@@ -1,5 +1,6 @@
 package com.jatin.practiseandroid.ui
 
+import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,6 +12,7 @@ import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import com.jatin.practiseandroid.R
 import com.jatin.practiseandroid.databinding.FragmentSpinnerBinding
 import com.jatin.practiseandroid.databinding.SpinnerLayoutBinding
@@ -30,7 +32,7 @@ class SpinnerFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private lateinit var binding: FragmentSpinnerBinding
-    private  var userList = arrayListOf("Jatin", "Maninder", "Badal")
+    private var userList = arrayListOf("Jatin", "Maninder", "Badal")
     private lateinit var dynamicSpinnerAdapter: ArrayAdapter<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -87,33 +89,78 @@ class SpinnerFragment : Fragment() {
         binding.dynamicSpinner.adapter = dynamicSpinnerAdapter
 
         binding.dynamicSpinner.onItemSelectedListener = object : OnItemSelectedListener {
+
+            private var isFirstSelection = true
             override fun onItemSelected(
                 parent: AdapterView<*>?,
                 p1: View?,
                 position: Int,
                 p3: Long
             ) {
-                if (userList.isEmpty()) {
-                    Toast.makeText(requireContext(), "No items are there", Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(requireContext(), userList[position], Toast.LENGTH_SHORT).show()
+                val selectedItem = userList[position]
 
+
+
+                if (userList.isEmpty()) {
+                    Toast.makeText(requireContext(), "No items are there", Toast.LENGTH_SHORT)
+                        .show()
+                    return
                 }
+                if (isFirstSelection) {
+                    isFirstSelection = false
+                    return
+                }
+
+
+                alertDialog(selectedItem,position)
+
+
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
-                Toast.makeText(requireContext(), "Spinner is empty please add some items", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireContext(),
+                    "Spinner is empty please add some items",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
 
-        binding.addFab.setOnClickListener { dialogShow("0") }
-        binding.deleteFab.setOnClickListener { dialogShow("1") }
-        binding.updateFab.setOnClickListener { dialogShow("2") }
+        binding.addFab.setOnClickListener { dialogShow("0", "0") }
+        binding.deleteFab.setOnClickListener { dialogShow("1", "0") }
+        binding.updateFab.setOnClickListener { dialogShow("2", "0") }
+
+        binding.viewLayoutBtn.setOnClickListener {
+            findNavController().navigate(R.id.nav_gallery)
+        }
 
 
     }
 
-    private fun dialogShow(choice: String) {
+    private fun alertDialog(selectedItem: String,position: Int) {
+        AlertDialog.Builder(requireContext())
+            .setTitle("Please enter your choice to perform operation")
+            .setMessage("You selected: $selectedItem")
+            .setPositiveButton("Delete") { dialog, _ ->
+                userList.removeAt(position)
+                dynamicSpinnerAdapter.notifyDataSetChanged()
+                Toast.makeText(
+                    requireContext(),
+                    "Changes done successfully",
+                    Toast.LENGTH_SHORT
+                ).show()
+
+
+            }
+            .setNegativeButton("Update") { dialog, _ ->
+                dialogShow("5", position.toString())
+                dialog.dismiss()
+            }
+            .show()
+
+    }
+
+    private fun dialogShow(choice: String, enteredPosition: String) {
 
         val dialog = Dialog(requireContext())
         val dialogBinding = SpinnerLayoutBinding.inflate(layoutInflater)
@@ -135,7 +182,11 @@ class SpinnerFragment : Fragment() {
                         userList.add(newUser.toString())
                         dynamicSpinnerAdapter.notifyDataSetChanged()
 
-                        Toast.makeText(requireContext(), "Changes done successfully", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            requireContext(),
+                            "Changes done successfully",
+                            Toast.LENGTH_SHORT
+                        ).show()
                         dialog.dismiss()
                     }
 
@@ -159,7 +210,11 @@ class SpinnerFragment : Fragment() {
                         if (position in 1..size) {
                             userList.removeAt(position - 1)
                             dynamicSpinnerAdapter.notifyDataSetChanged()
-                            Toast.makeText(requireContext(), "Changes done successfully", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                requireContext(),
+                                "Changes done successfully",
+                                Toast.LENGTH_SHORT
+                            ).show()
 
                             dialog.dismiss()
                         } else {
@@ -182,7 +237,11 @@ class SpinnerFragment : Fragment() {
                             userList[position - 1] = dialogBinding.itemNameET.text.toString()
 
                             dynamicSpinnerAdapter.notifyDataSetChanged()
-                            Toast.makeText(requireContext(), "Changes done successfully", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                requireContext(),
+                                "Changes done successfully",
+                                Toast.LENGTH_SHORT
+                            ).show()
                             dialog.dismiss()
                         } else {
                             dialogBinding.itemPositionET.error = "Please enter valid position"
@@ -191,13 +250,30 @@ class SpinnerFragment : Fragment() {
                     }
                 }
             }
+
+            "5" -> {
+                dialogBinding.headingET.text = "Enter item name to update in spinner"
+
+
+                dialogBinding.itemPositionET.visibility = View.GONE
+                dialogBinding.doneBtn.setOnClickListener {
+                    userList[enteredPosition.toInt()] = dialogBinding.itemNameET.text.toString()
+                    dynamicSpinnerAdapter.notifyDataSetChanged()
+                    dialogBinding.itemNameET.text.clear()
+                    Toast.makeText(
+                        requireContext(),
+                        "Changes done successfully",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    dialog.dismiss()
+                }
+
+            }
         }
 
         dialog.show()
 
     }
-
-
 
 
     companion object {

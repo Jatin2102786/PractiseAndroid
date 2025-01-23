@@ -35,20 +35,7 @@ class GalleryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.textGallery.visibility = View.GONE
-        binding.start.setOnClickListener {
 
-            binding.textGallery.visibility = View.VISIBLE
-//            ProgressBar.initializeSpinner(requireContext(),binding.textGallery)
-//            ProgressBar.showProgress()
-        }
-
-        binding.end.setOnClickListener {
-//            ProgressBar.hideProgress()
-            binding.textGallery.visibility = View.GONE
-
-
-        }
 
     }
 

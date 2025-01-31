@@ -1,24 +1,19 @@
 package com.jatin.practiseandroid.ui
 
 import android.app.AlertDialog
-import android.app.Dialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.BaseAdapter
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.Toast
-import com.jatin.practiseandroid.R
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.jatin.practiseandroid.classes.Employee
-import com.jatin.practiseandroid.classes.EmployeeAdapter
-import com.jatin.practiseandroid.classes.OnItemClick
-import com.jatin.practiseandroid.databinding.FragmentHomeBinding
-import com.jatin.practiseandroid.databinding.FragmentListViewBinding
-import com.jatin.practiseandroid.databinding.ListviewAddItemDialogBinding
+import com.jatin.practiseandroid.classes.RecyclerAdapter
+import com.jatin.practiseandroid.classes.onClick
+import com.jatin.practiseandroid.databinding.FragmentReccylerBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -27,21 +22,17 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [ListViewFragment.newInstance] factory method to
+ * Use the [RecyclerFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ListViewFragment : Fragment(),OnItemClick {
+class RecyclerFragment : Fragment(),onClick {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private lateinit var binding: FragmentReccylerBinding
+    private lateinit var recyclerAdapter: RecyclerAdapter
+    private var list: ArrayList<Employee> = ArrayList()
 
-
-    private val employeeItems = arrayListOf<Employee>()
-    private val items = mutableListOf<String>()
-    private lateinit var binding: FragmentListViewBinding
-//    private lateinit var adapter: ArrayAdapter<String>
-
-    private lateinit var adapter: EmployeeAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -54,101 +45,29 @@ class ListViewFragment : Fragment(),OnItemClick {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-       binding = FragmentListViewBinding.inflate(layoutInflater)
-        return  binding.root
+
+        binding = FragmentReccylerBinding.inflate(layoutInflater)
+        return binding.root
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-//        adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, items)
-//        binding.listView.adapter = adapter
-//
-//        binding.fab.setOnClickListener { addItem() }
-//
-//        binding.listView.setOnItemClickListener { _, _, position, _ -> updateItem(position) }
-//
-//        binding.listView.setOnItemLongClickListener { _, _, position, _ ->
-//            deleteItem(position)
-//            true
-//        }
-
-        employeeItems.add(Employee("Jatin","Mehmi"))
-        employeeItems.add(Employee("Maninder","Singh"))
-        employeeItems.add(Employee("Badal","Singh"))
+        recyclerAdapter = RecyclerAdapter(list,this@RecyclerFragment)
+        binding.recyclerView.layoutManager = LinearLayoutManager(
+            requireContext(),LinearLayoutManager.VERTICAL,false
+        )
+        binding.recyclerView.adapter = recyclerAdapter
 
 
-
-        adapter = EmployeeAdapter(employeeItems,this@ListViewFragment)
-        binding.listView.adapter = adapter
-
+        list.add(Employee("Jatin","Mehmi"))
+        list.add(Employee("Maninder","Singh"))
+        list.add(Employee("Badal","Singh"))
 
         binding.fab.setOnClickListener {
-
             showAddEmployeeDialog()
         }
-
-    }
-
-
-
-    private fun addItem() {
-        val builder = AlertDialog.Builder(requireContext())
-        builder.setTitle("Add Item")
-
-        val input = EditText(requireContext())
-        builder.setView(input)
-
-        builder.setPositiveButton("Add") { _, _ ->
-            val newItem = input.text.toString()
-            if (newItem.isNotEmpty()) {
-                items.add(newItem)
-                adapter.notifyDataSetChanged()
-            } else {
-                Toast.makeText(requireContext(), "Item cannot be empty", Toast.LENGTH_SHORT).show()
-            }
-        }
-
-        builder.setNegativeButton("Cancel", null)
-        builder.show()
-    }
-
-    private fun updateItem(position: Int) {
-        val builder = AlertDialog.Builder(requireContext())
-        builder.setTitle("Update Item")
-
-        val input = EditText(requireContext())
-        input.setText(items[position])
-        builder.setView(input)
-
-        builder.setPositiveButton("Update") { _, _ ->
-            val updatedItem = input.text.toString()
-            if (updatedItem.isNotEmpty()) {
-                items[position] = updatedItem
-                adapter.notifyDataSetChanged()
-            } else {
-                Toast.makeText(requireContext(), "Item cannot be empty", Toast.LENGTH_SHORT).show()
-            }
-        }
-
-        builder.setNegativeButton("Cancel", null)
-        builder.show()
-    }
-
-    private fun deleteItem(position: Int) {
-        val builder = AlertDialog.Builder(requireContext())
-        builder.setTitle("Delete Item")
-        builder.setMessage("Are you sure you want to delete this item?")
-
-        builder.setPositiveButton("Delete") { _, _ ->
-            items.removeAt(position)
-            adapter.notifyDataSetChanged()
-            Toast.makeText(requireContext(), "Item deleted", Toast.LENGTH_SHORT).show()
-        }
-
-        builder.setNegativeButton("Cancel", null)
-        builder.show()
     }
 
     companion object {
@@ -158,12 +77,12 @@ class ListViewFragment : Fragment(),OnItemClick {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment ListViewFragment.
+         * @return A new instance of fragment ReccylerFragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            ListViewFragment().apply {
+            RecyclerFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
@@ -196,8 +115,8 @@ class ListViewFragment : Fragment(),OnItemClick {
             val name = nameInput.text.toString().trim()
             val surname = surnameInput.text.toString().trim()
             if (name.isNotEmpty() && surname.isNotEmpty()) {
-                employeeItems.add(Employee(name, surname))
-                adapter.notifyDataSetChanged()
+                list.add(Employee(name, surname))
+                recyclerAdapter.notifyDataSetChanged()
             } else {
                 Toast.makeText(requireContext(), "Fields cannot be empty", Toast.LENGTH_SHORT).show()
             }
@@ -206,7 +125,6 @@ class ListViewFragment : Fragment(),OnItemClick {
         builder.setNegativeButton("Cancel", null)
         builder.show()
     }
-
     override fun update(position: Int) {
         val builder = AlertDialog.Builder(requireContext())
         builder.setTitle("Update Employee")
@@ -217,11 +135,11 @@ class ListViewFragment : Fragment(),OnItemClick {
         }
 
         val nameInput = EditText(requireContext()).apply {
-            setText(employeeItems[position].name)
+            setText(list[position].name)
         }
 
         val surnameInput = EditText(requireContext()).apply {
-            setText(employeeItems[position].surName)
+            setText(list[position].surName)
         }
 
         layout.addView(nameInput)
@@ -232,8 +150,8 @@ class ListViewFragment : Fragment(),OnItemClick {
             val updatedName = nameInput.text.toString().trim()
             val updatedSurname = surnameInput.text.toString().trim()
             if (updatedName.isNotEmpty() && updatedSurname.isNotEmpty()) {
-                employeeItems[position] = Employee(updatedName, updatedSurname)
-                adapter.notifyDataSetChanged()
+                list[position] = Employee(updatedName, updatedSurname)
+                recyclerAdapter.notifyDataSetChanged()
             } else {
                 Toast.makeText(requireContext(), "Fields cannot be empty", Toast.LENGTH_SHORT).show()
             }
@@ -249,12 +167,13 @@ class ListViewFragment : Fragment(),OnItemClick {
         builder.setMessage("Are you sure you want to delete this employee?")
 
         builder.setPositiveButton("Delete") { _, _ ->
-            employeeItems.removeAt(position)
-            adapter.notifyDataSetChanged()
+            list.removeAt(position)
+            recyclerAdapter.notifyDataSetChanged()
             Toast.makeText(requireContext(), "Employee deleted", Toast.LENGTH_SHORT).show()
         }
 
         builder.setNegativeButton("Cancel", null)
         builder.show()
     }
+
 }

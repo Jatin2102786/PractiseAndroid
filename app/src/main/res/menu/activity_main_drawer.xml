@@ -32,5 +32,10 @@
             android:id="@+id/listViewFragment"
             android:icon="@drawable/ic_menu_camera"
             android:title="ListView" />
+
+        <item
+            android:id="@+id/reccylerFragment"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Recycler" />
     </group>
 </menu>

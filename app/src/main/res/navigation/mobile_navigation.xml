@@ -38,5 +38,16 @@
         android:label="fragment_list_view"
         tools:layout="@layout/fragment_list_view" />
 
+    <fragment
+        android:id="@+id/gif_fragment"
+        android:name="com.jatin.practiseandroid.ui.ListViewFragment"
+        android:label="fragment_gif"
+        tools:layout="@layout/fragment_gif" />
+    <fragment
+        android:id="@+id/reccylerFragment"
+        android:name="com.jatin.practiseandroid.ui.RecyclerFragment"
+        android:label="fragment_reccyler"
+        tools:layout="@layout/fragment_reccyler" />
+
 
 </navigation>

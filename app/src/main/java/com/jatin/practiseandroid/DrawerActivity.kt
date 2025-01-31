@@ -48,7 +48,6 @@ class DrawerActivity : AppCompatActivity() {
         val age = intent.getStringExtra("age")
         val bloodGroup = intent.getStringExtra("blood")
 
-//        val navController = findNavController(R.id.nav_host_fragment_content_drawer)
         val bundle = Bundle()
         bundle.putString("name", name)
         bundle.putString("email", email)
@@ -63,7 +62,6 @@ class DrawerActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.drawer, menu)
         return true
     }

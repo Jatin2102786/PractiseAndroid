@@ -1,4 +1,4 @@
-package com.jatin.practiseandroid.classes
+package com.jatin.practiseandroid.RoomDatabase
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,8 +7,9 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.jatin.practiseandroid.R
+import kotlinx.coroutines.NonDisposableHandle.parent
 
-class RecyclerAdapter(val list: ArrayList<Employee>,val onClick: onClick): RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
+class RoomActivityAdapter(private val list: ArrayList<Employee>, private val onClick: OnClick): RecyclerView.Adapter<RoomActivityAdapter.ViewHolder>() {
 
 
 
@@ -27,7 +28,6 @@ class RecyclerAdapter(val list: ArrayList<Employee>,val onClick: onClick): Recyc
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-
         var view = LayoutInflater.from(parent.context).inflate(R.layout.list_view_layout,parent,false)
         return ViewHolder(view)
     }
@@ -46,14 +46,18 @@ class RecyclerAdapter(val list: ArrayList<Employee>,val onClick: onClick): Recyc
                 onClick.delete(position)
             }
         }
-
-    }
+            }
 
     override fun getItemCount(): Int {
+
         return list.size
     }
-}
-interface onClick{
-    fun update(position: Int)
-    fun delete(position: Int)
+
+
+    interface OnClick{
+
+        fun delete(position: Int)
+        fun update(position: Int)
+    }
+    
 }

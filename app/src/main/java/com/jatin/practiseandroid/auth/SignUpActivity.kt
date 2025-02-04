@@ -1,15 +1,13 @@
-package com.jatin.practiseandroid
+package com.jatin.practiseandroid.auth
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
-import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.navigation.Navigation.findNavController
-import androidx.navigation.findNavController
+import com.jatin.practiseandroid.DrawerActivity
+import com.jatin.practiseandroid.R
 import com.jatin.practiseandroid.databinding.ActivitySignUpBinding
 
 class SignUpActivity : AppCompatActivity() {
@@ -34,7 +32,7 @@ class SignUpActivity : AppCompatActivity() {
 
         binding.signUpBTN.setOnClickListener {
 
-            val intent = Intent(this,DrawerActivity::class.java).apply {
+            val intent = Intent(this, DrawerActivity::class.java).apply {
                 putExtra("name",name)
                 putExtra("age",age)
                 putExtra("email",email)

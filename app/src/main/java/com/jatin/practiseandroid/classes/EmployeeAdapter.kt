@@ -8,7 +8,8 @@ import android.widget.Button
 import android.widget.TextView
 import com.jatin.practiseandroid.R
 
-class EmployeeAdapter(private val employeeList: ArrayList<Employee>, private val itemClick: OnItemClick) : BaseAdapter(){
+class EmployeeAdapter(private val employeeList: ArrayList<Employee>,
+                      private val itemClick: OnItemClick) : BaseAdapter(){
     override fun getCount(): Int {
         return employeeList.size
     }

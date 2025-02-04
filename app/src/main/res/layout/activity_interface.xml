@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:fitsSystemWindows="true"
-    tools:context=".InterfaceActivity">
+    tools:context=".Interaction.InterfaceActivity">
     <fragment
         android:id="@+id/nav_host_fragment_activity_interface"
         android:name="androidx.navigation.fragment.NavHostFragment"
@@ -48,6 +48,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="black"
+            />
+
+        <Button
+            android:id="@+id/visit_Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Visit Drawer Activity"
             />
     </LinearLayout>
 

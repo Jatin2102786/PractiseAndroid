@@ -1,17 +1,16 @@
-package com.jatin.practiseandroid
+package com.jatin.practiseandroid.Interaction
 
+import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
+import com.jatin.practiseandroid.DrawerActivity
+import com.jatin.practiseandroid.R
 import com.jatin.practiseandroid.databinding.ActivityInterfaceBinding
 
 class InterfaceActivity : AppCompatActivity() {
 
-    private var interactionInterface: InteractionInterface?=null
+    var interactionInterface: InteractionInterface?=null
     private lateinit var bindingInterface: ActivityInterfaceBinding
 
 
@@ -25,6 +24,8 @@ class InterfaceActivity : AppCompatActivity() {
 //        appBarConfiguration = AppBarConfiguration(navController.graph)
 //        setupActionBarWithNavController(navController, appBarConfiguration)
 
+//        interactionInterface = InteractionInterface.
+
         bindingInterface.blueBtn.setOnClickListener {
             interactionInterface?.changeColor("0")
         }
@@ -37,6 +38,11 @@ class InterfaceActivity : AppCompatActivity() {
             interactionInterface?.changeColor("2")
         }
 
+        bindingInterface.visitButton.setOnClickListener {
+            val intent = Intent(this, DrawerActivity::class.java)
+            startActivity(intent)
+        }
+
 
     }
 
@@ -46,10 +52,10 @@ class InterfaceActivity : AppCompatActivity() {
         if (choice == "0") {
             bindingInterface.blueBtn.setText(text)
         }
-        else  if (choice == "2") {
+        else  if (choice == "1") {
             bindingInterface.whiteBtn.setText(text)
         }
-        else  if (choice == "3") {
+        else  if (choice == "2") {
             bindingInterface.blackBtn.setText(text)
         }
     }
@@ -57,6 +63,9 @@ class InterfaceActivity : AppCompatActivity() {
 
 }
 
+
 interface InteractionInterface {
     fun changeColor(color: String)
 }
+
+

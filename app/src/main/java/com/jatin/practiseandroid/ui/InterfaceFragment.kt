@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import com.jatin.practiseandroid.InteractionInterface
-import com.jatin.practiseandroid.InterfaceActivity
+import com.jatin.practiseandroid.Interaction.InteractionInterface
+import com.jatin.practiseandroid.Interaction.InterfaceActivity
 import com.jatin.practiseandroid.R
 import com.jatin.practiseandroid.databinding.FragmentInterfaceBinding
 
@@ -21,7 +21,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [InterfaceFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class InterfaceFragment : Fragment(),InteractionInterface {
+class InterfaceFragment : Fragment(), InteractionInterface {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -35,6 +35,10 @@ class InterfaceFragment : Fragment(),InteractionInterface {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+        interfaceActivity = activity as InterfaceActivity
+        interfaceActivity.interactionInterface = this
+//        interfaceActivity.
+
     }
 
     override fun onCreateView(

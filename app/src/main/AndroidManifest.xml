@@ -15,25 +15,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PractiseAndroid"
         tools:targetApi="31">
+
+        <activity
+            android:name=".sideMenu.SideMenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RoomDatabase.foreign_key.NotesViewActivity"
+            android:exported="false" />
         <activity
             android:name=".RoomDatabase.RoomDBActivity"
-            android:exported="true" >
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".location.LocationAccessActivity"
             android:exported="true">
 
         </activity>
         <activity
+            android:name=".location.LocationAccessActivity"
+            android:exported="true" />
+        <activity
             android:name=".Interaction.InterfaceActivity"
             android:exported="false"
-            android:theme="@style/Theme.PractiseAndroid"/>
+            android:theme="@style/Theme.PractiseAndroid" />
         <activity
             android:name=".jetpack_fragments.JetpackActivity"
             android:exported="false" />
@@ -44,9 +44,16 @@
             android:theme="@style/Theme.PractiseAndroid" />
         <activity
             android:name=".DrawerActivity"
-            android:exported="false"
+            android:exported="true"
             android:label="@string/title_activity_drawer"
-            android:theme="@style/Theme.PractiseAndroid.NoActionBar" />
+            android:theme="@style/Theme.PractiseAndroid.NoActionBar"
+            >
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
         <activity
             android:name=".auth.SignUpActivity"
             android:exported="false" />

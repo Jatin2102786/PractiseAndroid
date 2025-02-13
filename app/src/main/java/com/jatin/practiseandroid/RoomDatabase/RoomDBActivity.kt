@@ -1,6 +1,7 @@
 package com.jatin.practiseandroid.RoomDatabase
 
 import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
 import android.widget.EditText
 import android.widget.LinearLayout
@@ -11,6 +12,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jatin.practiseandroid.R
+import com.jatin.practiseandroid.RoomDatabase.foreign_key.Department
+import com.jatin.practiseandroid.RoomDatabase.foreign_key.NotesViewActivity
 import com.jatin.practiseandroid.classes.RecyclerAdapter
 import com.jatin.practiseandroid.databinding.ActivityRoomDbactivityBinding
 
@@ -59,7 +62,7 @@ class RoomDBActivity : AppCompatActivity(),RoomActivityAdapter.OnClick {
 
     private fun showAddEmployeeDialog() {
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("Add Employee")
+        builder.setTitle("Add Note")
 
         val layout = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
@@ -67,11 +70,11 @@ class RoomDBActivity : AppCompatActivity(),RoomActivityAdapter.OnClick {
         }
 
         val nameInput = EditText(this).apply {
-            hint = "Enter Name"
+            hint = "Enter title"
         }
 
         val surnameInput = EditText(this).apply {
-            hint = "Enter Surname"
+            hint = "Enter subtitle"
         }
 
         layout.addView(nameInput)
@@ -141,9 +144,50 @@ class RoomDBActivity : AppCompatActivity(),RoomActivityAdapter.OnClick {
         builder.show()
     }
 
+    override fun addDepartment(position: Int) {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Add sub-note")
+
+        val layout = LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
+            setPadding(40, 20, 40, 20)
+        }
+
+        val departmentInput = EditText(this).apply {
+            hint = "Enter the sub note"
+        }
 
 
-    fun getList() {
+        layout.addView(departmentInput)
+        builder.setView(layout)
+
+        builder.setPositiveButton("Done") { _, _ ->
+            val department = departmentInput.text.toString().trim()
+            val id = list[position].id
+            if (department.isNotEmpty()) {
+
+                val employeeDep = Department(employeeId = id,departmentName = department, employeeName = list[position].name)
+                employeeDatabase.departmentDao().insertDepartment(employeeDep)
+                recyclerAdapter.notifyDataSetChanged()
+            } else {
+                Toast.makeText(this, "Fields cannot be empty", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        builder.show()
+
+    }
+
+    override fun visit(position: Int) {
+
+        val intent = Intent(this,NotesViewActivity::class.java).apply {
+            putExtra("employeeId",list[position].id)
+        }
+        startActivity(intent)
+    }
+
+
+    private fun getList() {
         list.clear()
         list.addAll(employeeDatabase.roomInterface().getEmployees())
     }

@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
     <!-- Permissions for location -->
+    <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
@@ -13,9 +14,31 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:name=".Supabase.MyApplication"
         android:theme="@style/Theme.PractiseAndroid"
         tools:targetApi="31">
 
+        <activity
+            android:name=".Supabase.SupaBaseActivity"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+        <activity
+            android:name=".realtimeDatabase.RealtimeActivity"
+            android:exported="true">
+
+        </activity>
+        <activity
+            android:name=".viewPager.ViewPagerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".WebViewActivity"
+            android:exported="false"/>
         <activity
             android:name=".sideMenu.SideMenuActivity"
             android:exported="false" />
@@ -24,15 +47,15 @@
             android:exported="false" />
         <activity
             android:name=".RoomDatabase.RoomDBActivity"
-            android:exported="true">
+            android:exported="true" />
+        <activity
+            android:name=".location.LocationAccessActivity"
+            android:exported="true" >
 
         </activity>
         <activity
-            android:name=".location.LocationAccessActivity"
-            android:exported="true" />
-        <activity
             android:name=".Interaction.InterfaceActivity"
-            android:exported="false"
+            android:exported="true"
             android:theme="@style/Theme.PractiseAndroid" />
         <activity
             android:name=".jetpack_fragments.JetpackActivity"
@@ -46,13 +69,8 @@
             android:name=".DrawerActivity"
             android:exported="true"
             android:label="@string/title_activity_drawer"
-            android:theme="@style/Theme.PractiseAndroid.NoActionBar"
-            >
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+            android:theme="@style/Theme.PractiseAndroid.NoActionBar" >
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
         </activity>
         <activity
             android:name=".auth.SignUpActivity"

@@ -51,5 +51,6 @@ class NotesViewActivity : AppCompatActivity() {
             notesList.clear()
             notesList.addAll(employeeDatabase.departmentDao().getAllDepartments(employeeId!!.toInt()))
             subNotesAdapter.notifyDataSetChanged()
+        
     }
 }

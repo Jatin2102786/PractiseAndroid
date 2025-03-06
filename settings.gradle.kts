@@ -8,6 +8,8 @@ pluginManagement {
             }
         }
         mavenCentral()
+        maven("https://maven.pkg.jetbrains.space/public/p/supabase-kt/maven")
+
         gradlePluginPortal()
     }
 }
@@ -16,6 +18,8 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+
+        maven("https://maven.pkg.jetbrains.space/public/p/supabase-kt/maven")
     }
 }
 

@@ -1,7 +1,10 @@
+@file:Suppress("DEPRECATION")
+
 package com.jatin.practiseandroid.location
 
 import android.Manifest
 import android.content.pm.PackageManager
+import android.location.Geocoder
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -13,6 +16,8 @@ import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.jatin.practiseandroid.R
 import com.jatin.practiseandroid.databinding.ActivityLocationAccessBinding
+import java.io.IOException
+import java.util.Locale
 
 class LocationAccessActivity : AppCompatActivity() {
 
@@ -33,7 +38,7 @@ class LocationAccessActivity : AppCompatActivity() {
             insets
         }
 
-//        declaring fused location client
+//        initializing fused location client
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
 
@@ -51,13 +56,54 @@ class LocationAccessActivity : AppCompatActivity() {
         ) {
             ActivityCompat.requestPermissions(
                 this,
-                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION),
                 LOCATION_PERMISSION_REQUEST_CODE
             )
         } else {
             getCurrentLocation()
         }
     }
+
+    private fun getCompleteAddressString(LATITUDE: Double, LONGITUDE: Double) {
+        val geocoder = Geocoder(this, Locale.getDefault())
+        try {
+            val addresses = geocoder.getFromLocation(LATITUDE, LONGITUDE, 1)
+            if (!addresses.isNullOrEmpty()) {
+                val address = addresses[0]
+
+                val addressString = address.getAddressLine(0)
+
+                val placeIdIndex = addressString.indexOf(" ")
+                if (placeIdIndex != -1) {
+                    binding.location.text = addressString.substring(placeIdIndex + 1)
+                } else {
+                    binding.location.text = addressString
+                }
+            }
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+
+    }
+
+//    override fun onRequestPermissionsResult(
+//        requestCode: Int,
+//        permissions: Array<out String>,
+//        grantResults: IntArray,
+//        deviceId: Int
+//    ) {
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults, deviceId)
+//        when(requestCode) {
+//            LOCATION_PERMISSION_REQUEST_CODE -> {
+//                if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//                    getCurrentLocation()
+//
+//                } else {
+//                    Toast.makeText(this, "Permission not granted", Toast.LENGTH_SHORT).show()
+//                }
+//            }
+//        }
+//    }
 
 
     private fun getCurrentLocation() {
@@ -71,11 +117,10 @@ class LocationAccessActivity : AppCompatActivity() {
                     val latitude = location.latitude
                     val longitude = location.longitude
 
-                    Toast.makeText(
-                        this,
-                        "Latitude = $latitude \nLongitude = $longitude",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    binding.longitude.text = latitude.toString()
+                    binding.latitude.text = longitude.toString()
+                    getCompleteAddressString(latitude,longitude)
+
                 }
             }.addOnFailureListener {
                 Toast.makeText(this, "Getting error while accessing location", Toast.LENGTH_SHORT).show()

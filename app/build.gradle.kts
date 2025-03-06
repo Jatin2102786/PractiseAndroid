@@ -75,7 +75,8 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-    implementation(libs.play.services.location)
+    implementation(libs.firebase.database.ktx)
+    implementation(libs.androidx.tools.core)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -84,7 +85,7 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
-    implementation (libs.android.gif.drawable)
+    implementation(libs.android.gif.drawable)
 
 
 //    Room dependency
@@ -92,5 +93,38 @@ dependencies {
     implementation(libs.androidx.room.runtime)
     kapt(libs.androidx.room.compiler)
     implementation(libs.androidx.room.ktx)
+
+
+//    implementation(libs.play.services.location.v2101)
+    implementation(libs.play.services.location)
+    implementation(libs.play.services.maps)
+    implementation(libs.places)
+
+
+//
+
+
+//    Storage supabase
+
+//    implementation(libs.storage)
+//    implementation(libs.ktor.client.okhttp)
+
+
+    implementation("io.github.jan-tennert.supabase:storage-kt:3.0.0,")
+    implementation(platform("io.github.jan-tennert.supabase:bom:3.0.0"))
+
+    implementation(libs.ktor.client.android)
+
+
+
+
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+    kapt("com.github.bumptech.glide:compiler:4.16.0")
+
+
+//        implementation("io.github.jan-tennert.supabase-kt:core:1.2.0")
+//        implementation("io.github.jan-tennert.supabase-kt:storage:1.2.0")
+//        implementation("io.github.jan-tennert.supabase-kt:auth:1.2.0")
+
 
 }

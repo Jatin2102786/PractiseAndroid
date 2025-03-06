@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import com.jatin.practiseandroid.R
 
@@ -33,9 +34,9 @@ class EmployeeAdapter(private val employeeList: ArrayList<Employee>,
         name.text = employeeList[position].name
         surName.text = employeeList[position].surName
 
-        var update = view.findViewById<Button>(R.id.btn_update)
+        var update = view.findViewById<ImageButton>(R.id.btn_update)
 
-        var delete = view.findViewById<Button>(R.id.btn_delete)
+        var delete = view.findViewById<ImageButton>(R.id.btn_delete)
         update.setOnClickListener {
             itemClick.update(position)
         }

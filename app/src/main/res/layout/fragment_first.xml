@@ -15,6 +15,50 @@
        app:layout_constraintGuide_percent="0.3"
        />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/guideH30"
+        >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:padding="20dp"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Hello"
+                android:textColor="@color/white"
+                android:textSize="50sp"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sign in!"
+                android:textColor="@color/white"
+                android:textSize="50sp"
+                />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/dotted"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="30dp"
+            app:tint="@color/white"
+            android:layout_gravity="end"/>
+
+    </LinearLayout>
+
+
+
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
@@ -68,15 +112,60 @@
                 android:layout_height="wrap_content"
                 android:text="Forget Password?"
                 android:textAlignment="textEnd"
-                android:textColor="@color/blue"
+                android:textColor="#A80036"
                 android:textSize="20sp"
                 />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="20dp"
+                android:layout_marginTop="30dp"
+                app:cardElevation="4dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/jetpack_gradient"
+                android:text="Sign In"
+                android:textSize="30sp"
+                app:backgroundTint="@null"/>
+            </com.google.android.material.card.MaterialCardView>
             
             
 <!--            <com.google.android.material.button.MaterialButton-->
 <!--                android:layout_width=""-->
 <!--                android:layout_height=""-->
 
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Don't have Account?"
+                android:textAlignment="textEnd"
+                android:layout_marginTop="100dp"
+                android:textSize="20sp"
+                />
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    style="@style/Widget.Material3.Button.TextButton"
+                    android:text="Sign Up"
+                    android:textSize="20sp"
+                    android:textColor="#A80036"
+                    android:background="@drawable/jetpack_gradient"
+                    android:backgroundTint="@null"
+                    />
+
+            </LinearLayout>
 
         </LinearLayout>
 

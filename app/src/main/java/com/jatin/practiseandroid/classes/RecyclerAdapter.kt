@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.jatin.practiseandroid.R
@@ -18,8 +19,8 @@ class RecyclerAdapter(val list: ArrayList<Employee>,val onClick: onClick): Recyc
 
         var name : TextView = view.findViewById(R.id.name_tv)
         var surname : TextView = view.findViewById(R.id.surname_tv)
-        val update: Button = view.findViewById(R.id.btn_update)
-        val delete: Button = view.findViewById(R.id.btn_delete)
+        val update: ImageButton = view.findViewById(R.id.btn_update)
+        val delete: ImageButton = view.findViewById(R.id.btn_delete)
 
 
 

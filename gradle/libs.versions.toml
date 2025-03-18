@@ -30,6 +30,7 @@ firebaseDatabaseKtx = "21.0.0"
 storage = "1.0.0"
 storageKt = "3.1.1"
 toolsCore = "1.0.0-alpha12"
+firebaseMessagingKtx = "24.1.0"
 
 [libraries]
 android-gif-drawable = { module = "pl.droidsonroids.gif:android-gif-drawable", version.ref = "androidGifDrawable" }
@@ -73,6 +74,7 @@ postgrest-kt = { module = "io.github.jan-tennert.supabase:postgrest-kt" }
 storage = { module = "io.github.jan-tennert.supabase-kt:storage", version.ref = "storage" }
 storage-kt = { module = "io.github.jan-tennert.supabase:storage-kt", version.ref = "storageKt" }
 androidx-tools-core = { group = "androidx.privacysandbox.tools", name = "tools-core", version.ref = "toolsCore" }
+firebase-messaging-ktx = { group = "com.google.firebase", name = "firebase-messaging-ktx", version.ref = "firebaseMessagingKtx" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

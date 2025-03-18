@@ -64,6 +64,27 @@ class LocationAccessActivity : AppCompatActivity() {
         }
     }
 
+    private fun getCurrentLocation() {
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) ==
+            PackageManager.PERMISSION_GRANTED
+        ) {
+            fusedLocationClient.lastLocation.addOnSuccessListener { location ->
+
+                if (location != null) {
+                    val latitude = location.latitude
+                    val longitude = location.longitude
+
+                    binding.longitude.text = latitude.toString()
+                    binding.latitude.text = longitude.toString()
+                    getCompleteAddressString(latitude,longitude)
+
+                }
+            }.addOnFailureListener {
+                Toast.makeText(this, "Getting error while accessing location", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
     private fun getCompleteAddressString(LATITUDE: Double, LONGITUDE: Double) {
         val geocoder = Geocoder(this, Locale.getDefault())
         try {
@@ -106,27 +127,7 @@ class LocationAccessActivity : AppCompatActivity() {
 //    }
 
 
-    private fun getCurrentLocation() {
 
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) ==
-            PackageManager.PERMISSION_GRANTED
-        ) {
-            fusedLocationClient.lastLocation.addOnSuccessListener { location ->
-
-                if (location != null) {
-                    val latitude = location.latitude
-                    val longitude = location.longitude
-
-                    binding.longitude.text = latitude.toString()
-                    binding.latitude.text = longitude.toString()
-                    getCompleteAddressString(latitude,longitude)
-
-                }
-            }.addOnFailureListener {
-                Toast.makeText(this, "Getting error while accessing location", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
 
 
 //    override fun onRequestPermissionsResult(

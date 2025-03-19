@@ -19,6 +19,37 @@
         android:theme="@style/Theme.PractiseAndroid"
         tools:targetApi="31">
         <activity
+            android:name=".PaymentActivity"
+            android:exported="true"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.razorpay.CheckoutActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <data
+                    android:host="rzp.io"
+                    android:scheme="io.rzp" />
+            </intent-filter>
+        </activity>
+
+        <receiver
+        android:name="com.razorpay.RzpTokenReceiver"
+        android:exported="true">
+        <intent-filter>
+
+            <action android:name="rzp.device_token.share"/>
+        </intent-filter>
+    </receiver>
+        <activity
             android:name=".Toolbar.CollapsingToolbarActivity"
             android:exported="false" />
         <activity
@@ -26,16 +57,11 @@
             android:exported="false" />
         <activity
             android:name=".Toolbar.ToolbarActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:exported="false"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity
             android:name=".FCM.FCMActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".SharedPreferences.SharedPrefencesActivity"
             android:exported="true" />

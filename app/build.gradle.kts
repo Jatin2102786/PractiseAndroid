@@ -128,4 +128,9 @@ dependencies {
 //        implementation("io.github.jan-tennert.supabase-kt:auth:1.2.0")
 
 
+//Razorpay
+
+    implementation (libs.checkout)
+
+
 }

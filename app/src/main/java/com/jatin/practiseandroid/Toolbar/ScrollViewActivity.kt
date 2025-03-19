@@ -24,11 +24,6 @@ class ScrollViewActivity : AppCompatActivity() {
             insets
         }
 
-        binding.apply {
-            fab.setOnClickListener{
-                val intent = Intent(this@ScrollViewActivity,CollapsingToolbarActivity::class.java)
-                startActivity(intent)
-            }
-        }
+
     }
 }

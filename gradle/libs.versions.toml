@@ -4,7 +4,7 @@ androidGifDrawable = "1.2.22"
 bom = "3.0.2"
 checkout = "1.6.4"
 firebaseBom = "33.7.0"
-kotlin = "1.9.0"
+kotlin = "2.1.0"
 coreKtx = "1.15.0"
 junit = "4.13.2"
 junitVersion = "1.2.1"
@@ -32,6 +32,10 @@ storage = "1.0.0"
 storageKt = "3.1.1"
 toolsCore = "1.0.0-alpha12"
 firebaseMessagingKtx = "24.1.0"
+media3Ui = "1.6.0"
+media3Exoplayer = "1.6.0"
+navigationFragmentKtxVersion = "2.9.0"
+navigationUiKtxVersion = "2.9.0"
 
 [libraries]
 android-gif-drawable = { module = "pl.droidsonroids.gif:android-gif-drawable", version.ref = "androidGifDrawable" }
@@ -77,6 +81,10 @@ storage = { module = "io.github.jan-tennert.supabase-kt:storage", version.ref = 
 storage-kt = { module = "io.github.jan-tennert.supabase:storage-kt", version.ref = "storageKt" }
 androidx-tools-core = { group = "androidx.privacysandbox.tools", name = "tools-core", version.ref = "toolsCore" }
 firebase-messaging-ktx = { group = "com.google.firebase", name = "firebase-messaging-ktx", version.ref = "firebaseMessagingKtx" }
+androidx-media3-ui = { group = "androidx.media3", name = "media3-ui", version.ref = "media3Ui" }
+androidx-media3-exoplayer = { group = "androidx.media3", name = "media3-exoplayer", version.ref = "media3Exoplayer" }
+navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigationFragmentKtxVersion" }
+navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigationUiKtxVersion" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

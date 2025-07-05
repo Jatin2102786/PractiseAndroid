@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".videoView.PickVideoActivity">
+    <Button
+        android:id="@+id/btnPickVideo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pick Video"/>
+
+    <TextView
+        android:id="@+id/idTVHeading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="Video View in Android"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <!-- adding VideoView to the layout -->
+    <VideoView
+        android:id="@+id/videoView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/idTVHeading"
+        android:layout_centerInParent="true" />
+
+
+</LinearLayout>

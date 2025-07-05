@@ -48,6 +48,16 @@
         android:name="com.jatin.practiseandroid.ui.RecyclerFragment"
         android:label="fragment_reccyler"
         tools:layout="@layout/fragment_reccyler" />
+    <fragment
+        android:id="@+id/QRCodeScannerFragment"
+        android:name="com.jatin.practiseandroid.QRCode.QRCodeScannerFragment"
+        android:label="fragment_q_r_code_scanner"
+        tools:layout="@layout/fragment_q_r_code_scanner" />
+    <fragment
+        android:id="@+id/QRCodeGenratorFragment"
+        android:name="com.jatin.practiseandroid.QRCode.QRCodeGenratorFragment"
+        android:label="fragment_q_r_code_genrator"
+        tools:layout="@layout/fragment_q_r_code_genrator" />
 
 
 </navigation>

@@ -1,5 +1,10 @@
 package com.jatin.practiseandroid
 
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -50,7 +55,7 @@ class PaymentActivity : AppCompatActivity(),PaymentResultWithDataListener,Extern
             options.put("image",R.drawable.ic_menu_gallery)
             options.put("theme.color","#335678")
             options.put("currency","INR")
-            options.put("amount","1000")
+            options.put("amount","100")
 
 
 //            Retry
@@ -90,6 +95,14 @@ class PaymentActivity : AppCompatActivity(),PaymentResultWithDataListener,Extern
     }
 
     override fun onExternalWalletSelected(p0: String?, p1: PaymentData?) {
-        TODO("Not yet implemented")
     }
+
+    override fun registerReceiver(receiver: BroadcastReceiver?, filter: IntentFilter): Intent? {
+        return if (Build.VERSION.SDK_INT >= 34 && applicationInfo.targetSdkVersion >= 34) {
+            super.registerReceiver(receiver, filter, Context.RECEIVER_EXPORTED)
+        } else {
+            super.registerReceiver(receiver, filter)
+        }
+    }
+
 }

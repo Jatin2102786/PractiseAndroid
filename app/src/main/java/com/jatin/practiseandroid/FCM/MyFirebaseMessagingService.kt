@@ -64,7 +64,7 @@ class MyFirebaseMessagingService: FirebaseMessagingService() {
 
 
 
-    private fun generateNotification(notificationData: RemoteMessage, bitmap: Bitmap?= null) {
+    private fun generateNotification(notificationData: RemoteMessage) {
 
 //        Intent
         var intent = Intent(this, FCMActivity::class.java)
@@ -86,9 +86,9 @@ class MyFirebaseMessagingService: FirebaseMessagingService() {
             .setAutoCancel(false)
             .setContentIntent(pendingIntent)
 
-        if(bitmap != null){
-            builder.setLargeIcon(bitmap)
-        }
+//        if(bitmap != null){
+//            builder.setLargeIcon(bitmap)
+//        }
 
         notificationManager.notify(System.currentTimeMillis().toInt(), builder.build())
 

@@ -37,5 +37,17 @@
             android:id="@+id/reccylerFragment"
             android:icon="@drawable/ic_menu_camera"
             android:title="Recycler" />
+
+
+        <item
+            android:id="@+id/QRCodeScannerFragment"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="QR code" />
+
+
+        <item
+            android:id="@+id/QRCodeGenratorFragment"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="QR code genrator" />
     </group>
 </menu>

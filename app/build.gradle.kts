@@ -3,7 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     id("com.google.gms.google-services")
     id("kotlin-kapt")
-
+    id("org.jetbrains.kotlin.plugin.compose") version "2.0.0"
 }
 
 android {
@@ -33,11 +33,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
     buildFeatures {
         compose = true
@@ -45,7 +45,7 @@ android {
 
     buildFeatures.viewBinding = true
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.10" // or latest version compatible with your Compose UI
     }
     packaging {
         resources {
@@ -78,6 +78,10 @@ dependencies {
     implementation(libs.firebase.database.ktx)
     implementation(libs.androidx.tools.core)
     implementation(libs.firebase.messaging.ktx)
+    implementation(libs.androidx.media3.ui)
+    implementation(libs.androidx.media3.exoplayer)
+    implementation(libs.navigation.fragment.ktx)
+    implementation(libs.navigation.ui.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -111,9 +115,8 @@ dependencies {
 //    implementation(libs.ktor.client.okhttp)
 
 
-    implementation("io.github.jan-tennert.supabase:storage-kt:3.0.0,")
+    implementation("io.github.jan-tennert.supabase:storage-kt:3.0.0")
     implementation(platform("io.github.jan-tennert.supabase:bom:3.0.0"))
-
     implementation(libs.ktor.client.android)
 
 
@@ -132,5 +135,11 @@ dependencies {
 
     implementation (libs.checkout)
 
+//      Zxing
+    implementation("com.journeyapps:zxing-android-embedded:4.3.0")
+    implementation("com.google.zxing:core:3.2.0")
+
+//    Qr code generator
+//    implementation("androidmads.library.qrgenearator:QRGenearator:1.0.3")
 
 }
